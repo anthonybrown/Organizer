@@ -1,5 +1,14 @@
 Organizer.EventsListView = Backbone.View.extend({
+	initialize: function() {
+		// bind our events
+		this.listenTo(this.collection, 'reset', this.render)
+		this.listenTo(this.collection, 'add', this.render)
+		this.listenTo(this.collection, 'remove', this.render)
 
+		//this.collection.on('reset', this.render, this);
+		//this.collection.on('add', this.render, this);
+		//this.collection.on('remove', this.render, this);
+	},
 	render: function () {
 
 		var events_elements = [];

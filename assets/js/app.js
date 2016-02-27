@@ -1,23 +1,23 @@
 Organizer = {
 	initialize: function () {
-		var events = new Organizer.Events()
-		var eventsList = new Organizer.EventsListView({
-			collection: events
+		Organizer.events  = new Organizer.Events()
+		 new Organizer.EventsListView({
+			collection: Organizer.events
 		})
 
-		events.fetch({
-			success: function() {
-				events.reset([ { title: 'Cather on the Rye' }, { title: 'To Kill a Mocking Bird' }, { title: 'On the Road Again' } ])
-				eventsList.render()
-			},
-
-			error: function() {
-				console.error('There was an error.')
-			}
-		})
+		Organizer.events.fetch()
+		Organizer.events.reset([ { title: 'Cather on the Rye' }, { title: 'To Kill a Mocking Bird' }, { title: 'On the Road Again' } ])
 	}
 };
 
 $(function () {
 	Organizer.initialize()
+	function setCopyRight () {
+		var thisDate = new Date();
+		var name = 'Tony Brown UI-Developer, UX-Designer.';
+		var thisYear = thisDate.getFullYear();
+		document.querySelector('#copyright').innerHTML = '&copy; ' + thisYear + ' ' + name;
+	}
+
+	setCopyRight();
 })
