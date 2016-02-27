@@ -1,21 +1,15 @@
 Organizer.EventsListView = Backbone.View.extend({
 	initialize: function() {
 		// bind our events
-		//this.listenTo(this.collection, 'reset', this.render)
-		//this.listenTo(this.collection, 'add', this.render)
-		//this.listenTo(this.collection, 'remove', this.render)
-
+		this.listenTo(this.collection, 'reset', this.render)
+		this.listenTo(this.collection, 'add', this.render)
+		this.listenTo(this.collection, 'remove', this.render)
+    // both listenTo and on do the same.
 		//this.collection.on('reset', this.render, this);
 		//this.collection.on('add', this.render, this);
 		//this.collection.on('remove', this.render, this);
 	},
 	render: function () {
-		/*var events = [
-			{ title: 'Catcher in the Rey', author: 'J.D. Salinger' },
-			{ title: 'To Kill a Mocking Bird', author: 'Harper Lee' },
-			{ title: 'War and Peace', author: 'Leo Tolstoy' }
-			]*/
-
 		var events_element = [];
 		this.collection.each(function (event) {
 			var eventView = new Organizer.EventView({ model: event })
