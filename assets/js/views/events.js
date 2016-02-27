@@ -1,30 +1,41 @@
 Organizer.EventsListView = Backbone.View.extend({
 
 	render: function () {
-		var events = [
-			{title: 'go to work'},
-			{title: 'meet with friends'},
-			{title: 'visit grandma'}
-		];
+
 		var events_elements = [];
-		_.each(events, function (event) {
+
+		this.collection.each( function (event) {
 			var eventView = new Organizer.EventView({ model: event });
 			events_elements.push(eventView.render().el);
-		});
+		})
 
 		this.$el.append(events_elements);
 
-		$('#app').html(this.el);
+		$('#events-list').html(this.el);
 	},
 
-	tagName: 'ul'
+	tagName: 'ul',
+	className: 'list-group'
 
-});
+})
 
 Organizer.EventView = Backbone.View.extend({
 	tagName: 'li',
+	className: 'list-group-item',
+
 	render: function () {
-		this.$el.html(this.model.title);
-		return this;
+		//console.log(this.model)
+		this.$el.html( Handlebars.templates['event'](this.model.toJSON()) );
+		return this
+	},
+
+	events: {
+		'click a' : function() {
+			console.log('removed')
+		},
+
+		removeEvent: function() {
+			console.log(this)
+		}
 	}
-});
+})
