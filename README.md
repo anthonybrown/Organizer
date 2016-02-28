@@ -8,6 +8,7 @@ the privelge to use.
 
 Todo:
   1. Validate
+  2. Get the remove button working
   2. Add more features
 	3. Create an Edit button.
 	4. re-format code
