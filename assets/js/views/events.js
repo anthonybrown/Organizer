@@ -1,5 +1,4 @@
 Organizer.NewEventView = Backbone.View.extend({
-
   tagName: 'form',
   initialize: function() {
     this.render()
@@ -18,25 +17,23 @@ Organizer.NewEventView = Backbone.View.extend({
 
   createEvent: function(e) {
     e.preventDefault()
-
     var title = this.$('#event_title').val()
     var author = this.$('#author_title').val()
     var model = new Organizer.Event()
-    var context = this
+    var _this = this
     model.save({
 			title: title,
 			author: author
-    }, {
+		}, {
       success: function() {
         Organizer.events.add(model)
-        context.el.reset()
+        _this.el.reset()
       }
     })
   }
 })
 
 Organizer.EventsListView = Backbone.View.extend({
-
   initialize: function() {
     this.listenTo(this.collection, 'reset', this.render)
     this.listenTo(this.collection, 'add', this.render)
@@ -49,6 +46,7 @@ Organizer.EventsListView = Backbone.View.extend({
       var eventView = new Organizer.EventView({model: event})
       events_elements.push(eventView.render().el)
     })
+
     this.$el.html(events_elements)
     $('#events-list').append(this.el)
     return this
@@ -61,9 +59,7 @@ Organizer.EventsListView = Backbone.View.extend({
 
 Organizer.EventView = Backbone.View.extend({
   tagName: 'li',
-
   className: 'list-group-item',
-
   render: function() {
     var template = Handlebars.compile($('#event-template').html())
     this.$el.html(template(this.model.toJSON()))
