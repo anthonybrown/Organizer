@@ -35,8 +35,8 @@ Organizer.NewEventView = Backbone.View.extend({
 
 Organizer.EventsListView = Backbone.View.extend({
   initialize: function() {
-    this.listenTo(this.collection, 'reset', this.render)
-    this.listenTo(this.collection, 'add', this.render)
+    this.listenTo(this.collection, 'reset' , this.render)
+    this.listenTo(this.collection, 'add'   , this.render)
     this.listenTo(this.collection, 'remove', this.render)
   },
 
@@ -69,5 +69,10 @@ Organizer.EventView = Backbone.View.extend({
   events: {
     'click a': 'removeEvent'
   },
-  removeEvent: function() {console.log(this);}
+
+	removeEvent: function(e) {
+		e.preventDefault()
+
+		this.model.destroy()
+	}
 });
