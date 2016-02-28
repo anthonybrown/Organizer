@@ -1,15 +1,15 @@
 Organizer = {
   initialize: function() {
-    Organizer.events = new Organizer.Events();
+    Organizer.events = new Organizer.Events()
 
-    new Organizer.NewEventView();
+    new Organizer.NewEventView()
 
     new Organizer.EventsListView({
       collection: Organizer.events
-    });
-    Organizer.events.fetch();
+    })
+    Organizer.events.fetch()
   }
-};
+}
 
 $(function () {
 	Organizer.initialize()

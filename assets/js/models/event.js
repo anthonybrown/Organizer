@@ -4,4 +4,4 @@ Organizer.Event = Backbone.Model.extend({
 		author: ''
   },
   localStorage: new Backbone.LocalStorage('events')
-});
+})
